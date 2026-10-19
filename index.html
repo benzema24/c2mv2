@@ -1035,7 +1035,7 @@ function buildResults() {
 function renderResults() {
   const res = IMP.results, sent = res.filter(x => x.req === 'Sent').length, failed = res.filter(x => x.req === 'Failed').length, reg = res.filter(x => x.rec.startsWith('Invited')).length, skipped = res.filter(x => !['Sent', 'Failed'].includes(x.req)).length;
   $('kpiResults').innerHTML = `<div class="kpi ok"><div class="v">${reg}</div><div class="l">New subcontractors invited</div></div><div class="kpi ok"><div class="v">${sent}</div><div class="l">Requests sent</div></div><div class="kpi ${failed ? 'bad' : ''}"><div class="v">${failed}</div><div class="l">Delivery failed</div></div><div class="kpi"><div class="v">${skipped}</div><div class="l">Rows skipped / not sent</div></div>`;
-  $('resultsMeta').innerHTML = `Import #${IMP.importNo} &middot; ${TODAY} 20:14 &middot; ${esc(IMP.fileName)} &middot; by Lou Ahmetaj &middot; created requests are tagged "Import #${IMP.importNo}" in All requests`;
+  $('resultsMeta').innerHTML = `Import #${IMP.importNo} &middot; ${TODAY} 20:14 &middot; ${esc(IMP.fileName)} &middot; by Jordan Reyes (Alliant analyst) &middot; created requests are tagged "Import #${IMP.importNo}" in All requests`;
   const f = $('resFilter').value;
   const rows = res.filter(x => !f || (f === 'skip' ? !['Sent', 'Failed'].includes(x.req) : x.req === f));
   $('resultRows').innerHTML = rows.map(x => {
@@ -1329,7 +1329,7 @@ const FIN_FILES = [
   { name: 'Brightline_Lighting_Audited_FS_FYE2025.pdf', meta: '2.1 MB · 18 pages · text-based · audit report', status: 'Processed', cls: 'p-ok' },
   { name: 'Brightline_Lighting_FS_FYE2024.pdf', meta: '1.9 MB · 16 pages · text-based · prior year', status: 'Processed', cls: 'p-ok' },
   { name: 'Brightline_WIP_Schedule_12-31-2025.pdf', meta: '3.8 MB · 2 pages · scanned, OCR', status: 'OCR', pct: 64 },
-  { name: 'Keystone_Surety_Letter_2026-07-08.pdf', meta: '240 KB · 1 page · text-based', status: 'Processed', cls: 'p-ok' }
+  { name: 'GraniteHarbor_Surety_Letter_2026-07-08.pdf', meta: '240 KB · 1 page · text-based', status: 'Processed', cls: 'p-ok' }
 ];
 const fmtN = n => n === null || n === undefined || n === '' ? '—' : (typeof n === 'number' ? (n < 0 ? '(' + Math.abs(n).toLocaleString('en-US') + ')' : n.toLocaleString('en-US')) : n);
 const parseN = s => { if (s === '—' || s === '' || s == null) return null; if (typeof s === 'number') return s; const m = String(s).replace(/[,$\s]/g, ''); if (/\?/.test(m)) return NaN; const neg = /^\(.*\)$/.test(m); const v = parseFloat(m.replace(/[()]/g, '')); return neg ? -v : v; };
@@ -1385,7 +1385,7 @@ const WIP = [
 ];
 const HEADER = [
   ['Company Name', 'G3', FIN_CO.name, [0, 'p.1']], ['Trade', 'C4', FIN_CO.trade, [0, 'p.8']], ['Reporting Level', 'N4', 'Audit', [0, 'p.1']], ['Reporting Period (months)', 'N3', '12', [0, 'p.3']],
-  ['FYE or YTD', 'N5', 'FYE', [0, 'p.3']], ['Month / Day / Year', 'N6:N8', 'December / 31 / 2025', [0, 'p.3']], ['Surety', 'G5', 'Keystone Surety Group', [3, 'p.1']], ['Surety Line', 'G6', '$15M / $25M', [3, 'p.1']],
+  ['FYE or YTD', 'N5', 'FYE', [0, 'p.3']], ['Month / Day / Year', 'N6:N8', 'December / 31 / 2025', [0, 'p.3']], ['Surety', 'G5', 'Granite Harbor Surety Company', [3, 'p.1']], ['Surety Line', 'G6', '$15M / $25M', [3, 'p.1']],
   ['Surety Letter Date', 'C5', 'July 8, 2026', [3, 'p.1']], ['Years in Business', 'G8', '17 (est. 2009)', [0, 'p.8']], ['EMR', 'G7', 'N/A (supplier)', [null, 'not in documents']], ['Confidential?', 'N9', 'Yes', [null, 'C2M default']]
 ];
 const FLAGS = [
